@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Libros</title>
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <main>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Inicio</a>
+              </div>
+          
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión  <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="Login1.html">Gestión Libros</a></li>
+                      <li><a href="Login.html">Historial de libros</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="carrito.html">Venta</a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+        <div class="container bg-8">
+            <div class="row">
+                <div class="col-sm-11 col-md-4 col-lg-4 col-xl-4 py-4 bg-white">
+                    <h2>Gestión Datos Libros</h2>
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                        <td>Codigo</td>
+                        <td><input type="text"  v-model="objVeh.codVeh"/></td>
+                    </tr>
+                    </div>
+            
+                    <div class="mb-3">
+    
+                        <tr>
+                        <td>Nombre</td>
+                        <td><input type="text"  v-model="objVeh.modelo"/></td>
+                    </tr>
+                     </div>
+                    <div class="mb-3">
+                    <tr>
+                         <td>Estado</td>
+                        <td><select  v-model="objVeh.marca">
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </div>
+                    <div class="mb-3">
+                        <tr>
+                        <td>Editorial</td>
+                         <td><input type="text"  v-model="objVeh.linea" /></td>
+                        </tr>
+                    </div>
+                    <div class="mb-3">
+                        <tr>
+                        <td>Autor</td>
+                        <td><input  type="text"  v-model="objVeh.kmsRec"/></td>
+                    </tr>
+                    </div>
+                    <div class="mb-3">
+                        <tr>
+                        <td>Tipo de tapa</td>
+                        <td><select  v-model="objVeh.tipo">
+                            <option value="Blanda">Blanda</option>
+                            <option value="Dura">Dura</option>
+                            </select>
+                        </td>
+                    </tr>
+                     </div>
+                        <div class="mb-3">
+                            <tr>
+                        <td>Imagen</td>
+                        <td><input type="text"  v-model="objVeh.srcImg" /></td>
+                    </tr>
+                    </div>
+                    <div class="mb-3">
+                        <tr>
+                        <td>Precio</td>
+                       <td><input type="text" v-model="objVeh.precio" /></td> 
+                    </tr>
+                    </div>
+                    <div class="mb-3">
+                        <tr>
+                        <td>Cantidad</td>
+                        <td><input type="text" name="cantExistencia" id="cantExistencia" v-model="objVeh.cantExistencia" /></td>
+                    </div>
+                </tbody>
+                </table>
+                <br><br>
+                <div class="d-grid gap-2">
+                    <button  v-if="btnValidar"   @click="agregar()" class="btn btn-success">Agregar</button>
+                    <button v-else  @click="actualizar()" class="btn btn-primary">Actualizar</button><br><br>
+                </div>
+                </div>
+                <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8 py-4 bg-white">
+                    <h2>Listado de Libros</h2>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Linea</th>
+                                <th>Autor</th>
+                                <th>Tipo</th>
+                                <th>Imagen</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="objVeh, index in myArraObjVeh">
+                                <td>{{objVeh.codVeh}}</td>
+                                <td>{{objVeh.modelo}}</td>
+                                <td>{{objVeh.marca}}</td>
+                                <td>{{objVeh.linea}}</td>
+                                <td>{{objVeh.kmsRec}}</td>
+                                <td>{{objVeh.tipo}}</td>
+                                <td>
+                                    <img :src="objVeh.srcImg" alt="No se encontró" height="100px" width="80px">
+                                </td>
+                                <td>{{objVeh.precio}}</td>
+                                <td>{{objVeh.cantExistencia}}</td>
+                                <td>
+                                    <button @click="editar(index)" class="btn btn-primary">Editar</button><br><br>
+                                    <button @click="eliminar(index)" class="btn btn-danger">Eliminar</button>
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+    </center>
+</main>
+<script src="vue.js"></script>
+<script src="codigo.js"></script>
+</body>
+
+</html>

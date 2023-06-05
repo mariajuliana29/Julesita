@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <main>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Inicio</a>
+              </div>
+          
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión  <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="Login1.html">Gestión Libros</a></li>
+                      <li><a href="Login.html">Historial de libros</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="carrito.html">Venta</a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+    <center>
+        <br><br>
+        <div  id="app" class="container bg-8">
+          <h1>Carrito de Ventas</h1>
+         <!--Necesito centrar--> 
+          <br>
+        
+          <table class="table">
+            <th>Nombre</th>
+            <th>Autor</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+            <tbody>
+                <tr v-for="objVeh, index in myArrayCarr">
+                    <td>{{objVeh.modelo}}</td>
+                    <td>{{objVeh.kmsRec}}</td>
+                  
+                    <td>
+                        <img :src="objVeh.srcImg" alt="No se encontró" height="100px" width="80px">
+                    </td>
+                    <td>{{objVeh.precio}}</td>
+                    <td><button class="btn btn-danger" v-on:click="eliminarCar(index)">Eliminar</button></td>
+              
+                </tr>
+            </tbody>
+            
+        </table>
+        
+        <br>
+        <br>
+        <button class=" btn btn-success" @click="habilitarDiv()" >Comprar</button>
+        <br>
+        <br>
+        <div  v-show="ocultarDiv">
+        <table class="table">
+            <tbody>
+                <th>Datos del Usuario</th>
+                <th>Valor</th>
+                <tr>
+                    <td>Nombre Usuario</td>
+                    <td><input type="text" v-model="objCliente.nom"></td>
+
+                </tr>
+                <tr>
+                    <td>Cedula</td>
+                    <td><input type="text" v-model="objCliente.ced"></td>
+                    
+                </tr>
+                <tr>
+                    <td>Direccion</td>
+                    <td><input type="text" v-model="objCliente.dir"></td>
+                    
+                </tr>
+                <tr>
+                    <td>Telefono</td>
+                    <td><input type="text" v-model="objCliente.tel"></td>
+                    
+                </tr>
+                <tr>
+                    <td>Numero de Cuenta</td>
+                    <td><input type="text" v-model="objCliente.nume"></td>
+                    
+                </tr>
+                <tr>
+                    <td>cvv</td>
+                    <td><input type="text" v-model="objCliente.cvv"></td>
+                    
+                </tr>
+                <tr>
+                    <td>Fecha</td>
+                    <td><input type="text" v-model="objCliente.fecha"></td>
+                    
+                </tr>
+                <tr>
+                    <br>
+                <td><button class="btn btn-info" @click="comprafinal()"> Finalizar Compra</button></td>
+                </tr>
+            </tbody>
+        </table>
+       </div>
+    
+<div v-show="ocultarDivCarrito">
+                
+        <h3>Vehículos Llevados al Carrito</h3>
+<br>
+  <table class="table bg-8">
+    <th>Cedula de comprador</th>
+    <th>Nombre</th>
+    <th>Imagen</th>
+    <th>Precio</th>
+    <th>Acciones</th>
+    <tbody>
+        <tr v-for="objCar, index in myArrayCarr">
+         <td>{{objCar.ced}}</td>
+         <td>{{objCar.modelo}}</td>
+            <td>
+            <img :src="objCar.srcImg" alt="imagen No Encontrada" height="100px" width="100">
+            </td>
+            <td>{{ objCar.precio}}</td>
+            <td>
+                <button @click="eliminarCar(index)">Eiminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<h2> Total Ventas: $ {{totalVenta}}</h2>  
+<br>
+<br>
+
+            <button class="btn btn-primary" @click="confirmarVta()">Confirmar Ventas</button>
+       <br>
+       <br>
+</table>
+</div>
+</div>
+    </tbody>
+    </center> 
+</main>
+    <script src="vue.js"></script>
+    <script src="codigo.js"></script>
+</body>
+</html>
